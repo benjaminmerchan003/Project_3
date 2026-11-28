@@ -3,6 +3,21 @@ $(function () { // Makes sure that your function is called once all the DOM elem
   // Called function to update the name, happiness, and weight of our pet in our HTML
   checkAndUpdatePetInfoInHtml();
 
+  console.log("Page loaded, Godzilla's starting stats:", pet_info);  
+  console.info("Godzilla is ready to play!");
+
+
+  console.table([
+    { button: "Treat",    happiness: "+2", weight: "+3" },
+    { button: "Play",     happiness: "+5", weight: "-3" },
+    { button: "Exercise", happiness: "-3", weight: "-6" },
+    { button: "Charge",   charge: "+10" }
+  ]);
+
+
+
+
+
   // When each button is clicked, it will "call" function for that button (functions are below)
   $('.treat-button').click(clickedTreatButton);
   $('.play-button').click(clickedPlayButton);
@@ -58,7 +73,7 @@ var gifPlaying = false; //checks if the gif is playing
 function gifPlay() {
 
 
-  if (gifPlaying) return; //if the gif is playing, let it finish. There is no restart
+  if (gifPlaying) { console.warn("A Gif is already playing. Ignore the click."); return; } //if the gif is playing, let it finish. There is no restart
 
   gifPlaying = true; //says to the compiler that the gif is playing
 
@@ -85,7 +100,7 @@ gifPlaying = false; //checks if the gif is playing
 function gifPlay_play() {
 
 
-  if (gifPlaying) return; //if the gif is playing, let it finish. There is no restart
+  if (gifPlaying) { console.warn("A Gif is already playing. Ignore the click."); return; } //if the gif is playing, let it finish. There is no restart
 
   gifPlaying = true; //says to the compiler that the gif is playing
 
@@ -113,7 +128,7 @@ gifPlaying = false; //checks if the gif is playing
 function gifPlay_exercise() {
 
 
-  if (gifPlaying) return; //if the gif is playing, let it finish. There is no restart
+  if (gifPlaying) { console.warn("A Gif is already playing. Ignore the click."); return; } //if the gif is playing, let it finish. There is no restart
 
   gifPlaying = true; //says to the compiler that the gif is playing
 
@@ -141,7 +156,7 @@ gifPlaying = false; //checks if the gif is playing
 function gifPlay_atomic() {
 
 
-  if (gifPlaying) return; //if the gif is playing, let it finish. There is no restart
+  if (gifPlaying) { console.warn("A Gif is already playing. Ignore the click."); return; } //if the gif is playing, let it finish. There is no restart
 
   gifPlaying = true; //says to the compiler that the gif is playing
 
@@ -295,12 +310,12 @@ function checkWeightAndHappinessBeforeUpdating() {
 
   if (pet_info.weight <= 0) { // if weight is below or equal to 0, cap the counter at 0. 
     pet_info.weight = 0;
-
+    console.error("Godzilla's weight hit 0 tons!");
   }
 
   if (pet_info.happiness <= 0) { // if happiness is below or equal to 0, cap the counter at 0. 
     pet_info.happiness = 0;
-
+    console.error("Godzilla's happiness hit 0!");
 
   }
 
