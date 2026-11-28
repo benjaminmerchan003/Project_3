@@ -3,7 +3,7 @@ $(function () { // Makes sure that your function is called once all the DOM elem
   // Called function to update the name, happiness, and weight of our pet in our HTML
   checkAndUpdatePetInfoInHtml();
 
-  console.log("Page loaded, Godzilla's starting stats:", pet_info);  
+  console.log("Page successfully loaded, These are Godzilla's current stats:", pet_info);  
   console.info("Godzilla is ready to play!");
 
 
@@ -15,7 +15,9 @@ $(function () { // Makes sure that your function is called once all the DOM elem
   ]);
 
 
-
+  console.log("%cGODZILLA'S %cpet dashboard",
+  "color: Pink; font-size: 16px;",
+  "color: Pink; font-size: 16px; font-style: italic;");
 
 
   // When each button is clicked, it will "call" function for that button (functions are below)
@@ -24,6 +26,7 @@ $(function () { // Makes sure that your function is called once all the DOM elem
   $('.exercise-button').click(clickedExerciseButton);
   $('.charge-button').click(clickedchargedButton);
   $('.fire-button').click(clickedfireButton);
+  $('.sleep-button').click(clickedsleepButton); //button to cause 404
 })
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -237,6 +240,14 @@ function clickedTreatButton() {
   petComment(tComments); //runs the petcomment function with tComments, so the compiler uses tComments array when it calculates using my selector formula
   // outputs a random godzilla comment from the specific array. 
   checkAndUpdatePetInfoInHtml(); //updates godzillas stats on the html side. 
+
+  console.group("Treat clicked");
+  console.log("Happiness:", pet_info.happiness);
+  console.log("Weight:", pet_info.weight);
+  console.groupEnd();
+
+
+
 }
 
 function clickedPlayButton() {
@@ -257,6 +268,14 @@ function clickedExerciseButton() {
 
   pet_info.happiness += -3;
   pet_info.weight += -6;
+
+  var start = Date.now();
+  var pushUps = 0;
+  while (Date.now() - start < 300) { pushUps++; } // freezes the page for 300ms on purpose 
+  console.log("Push-ups done: " + pushUps);
+
+
+
 
   gifPlay_exercise();
   petComment(eComments);
@@ -296,7 +315,19 @@ function clickedfireButton() { //function for the hidden charge/fire button
 
   petComment(fComments); //plays a random comment. 
 
+    console.log("Target destroyed: " + pet_info.target.name); // when fired, tries to log a comment that calls a undefined property. 
+}
 
+
+
+
+
+
+function clickedsleepButton() {
+  $('.pet-image').attr('src', 'images/godzillasleeping.gif'); 
+  setTimeout(function () {
+    $('.pet-image').attr('src', 'images/pet.webp'); 
+  }, 1500);
 }
 
 
